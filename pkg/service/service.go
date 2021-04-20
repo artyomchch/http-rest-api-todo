@@ -1,8 +1,12 @@
 package service
 
-import "github.com/artyomchch/http-rest-api-test/pkg/repository"
+import (
+	http_rest_api_test "github.com/artyomchch/http-rest-api-test"
+	"github.com/artyomchch/http-rest-api-test/pkg/repository"
+)
 
 type Authorization interface {
+	CreateUser(user http_rest_api_test.User) (int, error)
 }
 
 type TodoList interface {
@@ -18,5 +22,7 @@ type Service struct {
 }
 
 func NewService(repos *repository.Repository) *Service {
-	return &Service{}
+	return &Service{
+		Authorization: NewAuthService(repos.Authorization),
+	}
 }
