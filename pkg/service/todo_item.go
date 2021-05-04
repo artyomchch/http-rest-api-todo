@@ -31,3 +31,11 @@ func (s *TodoItemService) GetAll(userId, listId int) ([]http_rest_api_test.TodoI
 func (s *TodoItemService) GetById(userId, itemId int) (http_rest_api_test.TodoItem, error) {
 	return s.repo.GetById(userId, itemId)
 }
+
+func (s *TodoItemService) Delete(userId, itemId int) error {
+	return s.repo.Delete(userId, itemId)
+}
+
+func (s *TodoItemService) Update(userId, itemId int, input http_rest_api_test.UpdateItemInput) error {
+	return s.repo.Update(userId, itemId, input)
+}
