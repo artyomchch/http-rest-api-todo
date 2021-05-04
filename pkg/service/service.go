@@ -22,6 +22,7 @@ type TodoList interface {
 type TodoItem interface {
 	Create(userId, listId int, item http_rest_api_test.TodoItem) (int, error)
 	GetAll(userId, listId int) ([]http_rest_api_test.TodoItem, error)
+	GetById(userId, itemId int) (http_rest_api_test.TodoItem, error)
 }
 
 type Service struct {

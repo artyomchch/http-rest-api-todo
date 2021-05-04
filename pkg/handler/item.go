@@ -70,13 +70,13 @@ func (h *Handler) getItemById(c *gin.Context) {
 		return
 	}
 
-	items, err := h.services.TodoItem.GetById(userId, itemId)
+	item, err := h.services.TodoItem.GetById(userId, itemId)
 	if err != nil {
 		newErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return
 	}
 
-	c.JSON(http.StatusOK, items)
+	c.JSON(http.StatusOK, item)
 
 }
 func (h *Handler) updateItem(c *gin.Context) {
