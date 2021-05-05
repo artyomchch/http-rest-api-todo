@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	http_rest_api_test "github.com/artyomchch/http-rest-api-test"
+	"github.com/artyomchch/http-rest-api-test"
 	"github.com/artyomchch/http-rest-api-test/pkg/handler"
 	"github.com/artyomchch/http-rest-api-test/pkg/repository"
 	"github.com/artyomchch/http-rest-api-test/pkg/service"
@@ -14,6 +14,17 @@ import (
 	"os/signal"
 	"syscall"
 )
+
+// @title Todo App API
+// @version 1.0
+// @description API Server for TodoList Application
+
+// @host localhost:8000
+// @BasePath /
+
+// @securityDefinitions.apikey ApiKeyAuth
+// @in header
+// @name Authorization
 
 func main() {
 	logrus.SetFormatter(new(logrus.JSONFormatter))
@@ -40,7 +51,7 @@ func main() {
 	repos := repository.NewRepository(db)
 	services := service.NewService(repos)
 	handlers := handler.NewHandler(services)
-	srv := new(http_rest_api_test.Server)
+	srv := new(todo.Server)
 	go func() {
 		if err := srv.Run(viper.GetString("port"), handlers.InitRoutes()); err != nil {
 			logrus.Fatalf("error occured while running http server: %s", err.Error())
