@@ -12,15 +12,14 @@ import (
 // @ID create-account
 // @Accept  json
 // @Produce  json
-// @Param input body todo.User true "account info"
+// @Param input body http_rest_api_test.User true "account info"
 // @Success 200 {integer} integer 1
 // @Failure 400,404 {object} errorResponse
 // @Failure 500 {object} errorResponse
 // @Failure default {object} errorResponse
-// @Router /auth/sign-up [post]
-
+// @Router /auth/register [post]
 func (h *Handler) signUp(c *gin.Context) {
-	var input todo.User
+	var input http_rest_api_test.User
 
 	if err := c.BindJSON(&input); err != nil {
 		newErrorResponse(c, http.StatusBadRequest, err.Error())
@@ -55,8 +54,7 @@ type signInInput struct {
 // @Failure 400,404 {object} errorResponse
 // @Failure 500 {object} errorResponse
 // @Failure default {object} errorResponse
-// @Router /auth/sign-in [post]
-
+// @Router /auth/login [post]
 func (h *Handler) signIn(c *gin.Context) {
 	var input signInInput
 

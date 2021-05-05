@@ -2,7 +2,9 @@ package main
 
 import (
 	"context"
-	"github.com/artyomchch/http-rest-api-test"
+	http_rest_api_test "github.com/artyomchch/http-rest-api-test"
+
+	//"github.com/artyomchch/http-rest-api-test"
 	"github.com/artyomchch/http-rest-api-test/pkg/handler"
 	"github.com/artyomchch/http-rest-api-test/pkg/repository"
 	"github.com/artyomchch/http-rest-api-test/pkg/service"
@@ -15,7 +17,7 @@ import (
 	"syscall"
 )
 
-// @title Todo App API
+// @title rest full api for mobile app
 // @version 1.0
 // @description API Server for TodoList Application
 
@@ -51,7 +53,7 @@ func main() {
 	repos := repository.NewRepository(db)
 	services := service.NewService(repos)
 	handlers := handler.NewHandler(services)
-	srv := new(todo.Server)
+	srv := new(http_rest_api_test.Server)
 	go func() {
 		if err := srv.Run(viper.GetString("port"), handlers.InitRoutes()); err != nil {
 			logrus.Fatalf("error occured while running http server: %s", err.Error())

@@ -1,4 +1,4 @@
-package todo
+package http_rest_api_test
 
 type User struct {
 	Id       int    `json:"-" db:"id"`
